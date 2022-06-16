@@ -16,8 +16,8 @@ pageEncoding="UTF-8" %>
       list="sortTypes" 
       name="selectedSortType" />
       <s:textfield key="keyword"/>
-    <s:submit />
-  </s:form>
+      <s:submit />
+    </s:form>
     <s:iterator value="newsResponse.articles">
       <fieldset>
         <s:property value="publishedAt" /><br />

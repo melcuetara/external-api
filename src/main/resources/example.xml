@@ -44,6 +44,15 @@
             <result>/WEB-INF/example/news.jsp</result>
         </action>
 
+        <action name="Recipe" class="com.example.example.action.Recipe" method="execute">
+            <result>/WEB-INF/example/recipe.jsp</result>
+            <result name="input">/WEB-INF/example/recipe.jsp</result>
+        </action>
+
+        <action name="SelectRecipe" class="com.example.example.action.Recipe" method="displayRecipe">
+            <result>/WEB-INF/example/selectRecipe.jsp</result>
+        </action>
+
         <!-- Add additional "example" package actions here. -->
 
     </package>

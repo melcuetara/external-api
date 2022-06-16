@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<!-- 
+  - This file is included by the struts.xml file as an example
+  - of how to break up the configuration file into multiple files.
+-->
+<struts>
+    <package name="example" namespace="/example" extends="struts-default">
+
+        <default-action-ref name="HelloWorld" />
+
+        <action name="HelloWorld" class="com.example.example.HelloWorld">
+            <result>/WEB-INF/example/HelloWorld.jsp</result>
+        </action>
+
+        <action name="Login_*" method="{1}" class="com.example.example.Login">
+            <result name="input">/WEB-INF/example/Login.jsp</result>
+            <result type="redirectAction">Menu</result>
+        </action>
+
+        <action name="*" class="com.example.example.ExampleSupport">
+            <result>/WEB-INF/example/{1}.jsp</result>
+        </action>
+
+        <action name="CreateAccount" class="com.example.example.action.CreateAccount">
+            <result name="input">/WEB-INF/example/CreateAccount.jsp</result>
+            <result name="success">/WEB-INF/example/CreateAccount.jsp</result>
+            <result name="error">/WEB-INF/example/CreateAccount.jsp</result>
+        </action>
+
+        <action name="LoginAccount" class="com.example.example.action.LoginAccount">
+            <result name="input">/WEB-INF/example/LoginAccount.jsp</result>
+            <result name="success">/WEB-INF/example/LoginAccount.jsp</result>
+            <result name="error">/WEB-INF/example/LoginAccount.jsp</result>
+        </action>
+
+        <action name="ListAccount" class="com.example.example.action.List" method="execute">
+            <result>/WEB-INF/example/ListAccount.jsp</result>
+        </action>
+
+        <action name="ListNews" class="com.example.example.action.News" method="execute">
+            <result>/WEB-INF/example/news.jsp</result>
+        </action>
+
+        <!-- Add additional "example" package actions here. -->
+
+    </package>
+</struts>
