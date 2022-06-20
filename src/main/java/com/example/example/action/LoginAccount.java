@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.example.example.ExampleSupport;
+import com.example.example.HashPassword;
 import com.example.example.model.User;
 
 public class LoginAccount extends ExampleSupport {
@@ -19,11 +20,14 @@ public class LoginAccount extends ExampleSupport {
     private String lastName;
     private int age;
     private String address;
+    private String encryptedPassword;
 
     public String execute() {
 
         if (!emptyForm(username) || !emptyForm(password)) {
-            user = new User(username, password);
+            HashPassword hashPassword = new HashPassword();
+            encryptedPassword = hashPassword.getHash(password);
+            user = new User(username, encryptedPassword);
             if (userFound()) {
                 return SUCCESS;
             } else {
@@ -40,6 +44,7 @@ public class LoginAccount extends ExampleSupport {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
+
             String URL = "jdbc:mysql://localhost:3306/mydb?useTimezone=true&serverTimezone=UTC";
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL, "root", "meljamaica");

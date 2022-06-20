@@ -1,11 +1,15 @@
 package com.example.example.action;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.example.example.ExampleSupport;
+import com.example.example.HashPassword;
 import com.example.example.model.User;
 
 public class CreateAccount extends ExampleSupport{
@@ -14,6 +18,7 @@ public class CreateAccount extends ExampleSupport{
     private User user;
     private String username;
     private String password;
+    private String encryptedPassword;
 
     public String execute() {
 
@@ -32,10 +37,13 @@ public class CreateAccount extends ExampleSupport{
     }
 
     public boolean insertData() {
-        user = new User(username, password);
+        
         Connection connection = null;
         Statement statement = null;
         try {
+            HashPassword hashPassword = new HashPassword();
+            encryptedPassword = hashPassword.getHash(password);
+            user = new User(username, encryptedPassword);
             String URL = "jdbc:mysql://localhost:3306/mydb?useTimezone=true&serverTimezone=UTC";
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL, "root", "meljamaica");
