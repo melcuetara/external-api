@@ -12,6 +12,7 @@ import com.example.example.model.User;
 
 public class LoginAccount extends ExampleSupport {
 
+    private String token ="";
     private String error = "";
     private User user;
     private String username;
@@ -21,6 +22,15 @@ public class LoginAccount extends ExampleSupport {
     private int age;
     private String address;
     private String encryptedPassword;
+
+    
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String execute() {
 

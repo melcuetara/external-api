@@ -81,28 +81,28 @@
           <s:submit />
         </s:form>
       <s:iterator value="response.hits">
-      <div class="card">
-        <div class="image">
-          <img src="<s:property value='recipe.image' />" />
+        <div class="card">
+          <div class="image">
+            <img src="<s:property value='recipe.image' />" />
+          </div>
+          <div class="title">
+            <h1>
+              <s:property value="recipe.label" />
+            </h1>
+          </div>
+          <div class="des">
+            <p>
+              Source: <s:property value="recipe.source" /> </br>
+              Meal: <s:property value="recipe.mealType" /> </br>
+              Dish: <s:property value="recipe.dishType" /> </br>
+              Cuisine: <s:property value="recipe.cuisineType" /> </br>
+              Calories: <s:property value="recipe.calories" />kcal
+            </p>
+            <s:url var="url" action="selectRecipe">
+            </s:url>
+            <s:a href="%{url}"><button>Get Recipe</button></s:a>
+          </div>
         </div>
-        <div class="title">
-          <h1>
-            <s:property value="recipe.label" />
-          </h1>
-        </div>
-        <div class="des">
-          <p>
-            Source: <s:property value="recipe.source" /> </br>
-            Meal: <s:property value="recipe.mealType" /> </br>
-            Dish: <s:property value="recipe.dishType" /> </br>
-            Cuisine: <s:property value="recipe.cuisineType" /> </br>
-            Calories: <s:property value="recipe.calories" />kcal
-          </p>
-          <s:form action="SelectRecipe" >
-            <button>Get Recipe</button>
-          </s:form>
-        </div>
-      </div>
       </s:iterator>    
       </body> 
       </html>
